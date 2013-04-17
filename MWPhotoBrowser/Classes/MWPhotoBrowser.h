@@ -33,6 +33,7 @@
 
 // Properties
 @property (nonatomic) BOOL displayActionButton;
+@property (nonatomic, weak) id<MWPhotoBrowserDelegate> delegate;
 
 // Init
 - (id)initWithPhotos:(NSArray *)photosArray  __attribute__((deprecated)); // Depreciated
