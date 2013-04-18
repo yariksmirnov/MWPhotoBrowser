@@ -30,7 +30,9 @@
 
 // MWPhotoBrowser
 @interface MWPhotoBrowser : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate> {
+@protected
     UIToolbar *_toolbar;
+    NSMutableArray *_photos;
 }
 // Properties
 @property (nonatomic) BOOL displayActionButton;
