@@ -40,7 +40,6 @@
 	NSUInteger _pageIndexBeforeRotation;
 	
 	// Navigation & controls
-	UIToolbar *_toolbar;
 	NSTimer *_controlVisibilityTimer;
 	UIBarButtonItem *_previousButton, *_nextButton, *_actionButton;
     UIActionSheet *_actionsSheet;
@@ -140,30 +139,42 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
 @synthesize progressHUD = _progressHUD;
 @synthesize previousViewControllerBackButton = _previousViewControllerBackButton;
 @synthesize delegate = _delegate;
+@synthesize currentPageIndex = _currentPageIndex;
 #pragma mark - NSObject
+
+- (void)defaultInit {
+    // Defaults
+    self.wantsFullScreenLayout = YES;
+    self.hidesBottomBarWhenPushed = YES;
+    _photoCount = NSNotFound;
+    _currentPageIndex = 0;
+    _performingLayout = NO; // Reset on view did appear
+    _rotating = NO;
+    _viewIsActive = NO;
+    _visiblePages = [[NSMutableSet alloc] init];
+    _recycledPages = [[NSMutableSet alloc] init];
+    _photos = [[NSMutableArray alloc] init];
+    _displayActionButton = NO;
+    _didSavePreviousStateOfNavBar = NO;
+    
+    // Listen for MWPhoto notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleMWPhotoLoadingDidEndNotification:)
+                                                 name:MWPHOTO_LOADING_DID_END_NOTIFICATION
+                                               object:nil];
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self defaultInit];
+    }
+    return self;
+}
 
 - (id)init {
     if ((self = [super init])) {
-        
-        // Defaults
-        self.wantsFullScreenLayout = YES;
-        self.hidesBottomBarWhenPushed = YES;
-        _photoCount = NSNotFound;
-		_currentPageIndex = 0;
-		_performingLayout = NO; // Reset on view did appear
-		_rotating = NO;
-        _viewIsActive = NO;
-        _visiblePages = [[NSMutableSet alloc] init];
-        _recycledPages = [[NSMutableSet alloc] init];
-        _photos = [[NSMutableArray alloc] init];
-        _displayActionButton = NO;
-        _didSavePreviousStateOfNavBar = NO;
-        
-        // Listen for MWPhoto notifications
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleMWPhotoLoadingDidEndNotification:)
-                                                     name:MWPHOTO_LOADING_DID_END_NOTIFICATION
-                                                   object:nil];
+        [self defaultInit];
     }
     return self;
 }

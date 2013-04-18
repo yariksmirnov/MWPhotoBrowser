@@ -29,11 +29,13 @@
 @end
 
 // MWPhotoBrowser
-@interface MWPhotoBrowser : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate> 
-
+@interface MWPhotoBrowser : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate, MFMailComposeViewControllerDelegate> {
+    UIToolbar *_toolbar;
+}
 // Properties
 @property (nonatomic) BOOL displayActionButton;
-@property (nonatomic, weak) id<MWPhotoBrowserDelegate> delegate;
+@property (nonatomic, weak) IBOutlet id<MWPhotoBrowserDelegate> delegate;
+@property (nonatomic, assign) unsigned int currentPageIndex;
 
 // Init
 - (id)initWithPhotos:(NSArray *)photosArray  __attribute__((deprecated)); // Depreciated
@@ -44,6 +46,8 @@
 
 // Set page that photo browser starts on
 - (void)setInitialPageIndex:(NSUInteger)index;
+
+-(void)updateNavigation;
 
 @end
 
