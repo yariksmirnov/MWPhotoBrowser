@@ -304,20 +304,20 @@ navigationBarBackgroundImageLandscapePhone = _navigationBarBackgroundImageLandsc
         self.navigationItem.rightBarButtonItem = doneButton;
     } else {
         // We're not first so show back button
-        UIViewController *previousViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-        NSString *backButtonTitle = previousViewController.navigationItem.backBarButtonItem ? previousViewController.navigationItem.backBarButtonItem.title : previousViewController.title;
-        UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle style:UIBarButtonItemStylePlain target:nil action:nil];
-        // Appearance
-        if ([UIBarButtonItem respondsToSelector:@selector(appearance)]) {
-            [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-            [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
-            [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
-            [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
-            [newBackButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateNormal];
-            [newBackButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateHighlighted];
-        }
-        self.previousViewControllerBackButton = previousViewController.navigationItem.backBarButtonItem; // remember previous
-        previousViewController.navigationItem.backBarButtonItem = newBackButton;
+//        UIViewController *previousViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+//        NSString *backButtonTitle = previousViewController.navigationItem.backBarButtonItem ? previousViewController.navigationItem.backBarButtonItem.title : previousViewController.title;
+//        UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle style:UIBarButtonItemStylePlain target:nil action:nil];
+//        // Appearance
+//        if ([UIBarButtonItem respondsToSelector:@selector(appearance)]) {
+//            [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//            [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateNormal barMetrics:UIBarMetricsLandscapePhone];
+//            [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+//            [newBackButton setBackButtonBackgroundImage:nil forState:UIControlStateHighlighted barMetrics:UIBarMetricsLandscapePhone];
+//            [newBackButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateNormal];
+//            [newBackButton setTitleTextAttributes:[NSDictionary dictionary] forState:UIControlStateHighlighted];
+//        }
+//        self.previousViewControllerBackButton = previousViewController.navigationItem.backBarButtonItem; // remember previous
+//        previousViewController.navigationItem.backBarButtonItem = newBackButton;
     }
     
     // Content offset
@@ -357,10 +357,10 @@ _previousButton = nil;
     }
     
     // Navigation bar appearance
-    if (!_viewIsActive && [self.navigationController.viewControllers objectAtIndex:0] != self) {
-        [self storePreviousNavBarAppearance];
-    }
-    [self setNavBarAppearance:animated];
+//    if (!_viewIsActive && [self.navigationController.viewControllers objectAtIndex:0] != self) {
+//        [self storePreviousNavBarAppearance];
+//    }
+    //[self setNavBarAppearance:animated];
     
     // Update UI
 	[self hideControlsAfterDelay];
@@ -377,7 +377,7 @@ _previousButton = nil;
         _viewIsActive = NO;
         
         // Bar state / appearance
-        [self restorePreviousNavBarAppearance:animated];
+        //[self restorePreviousNavBarAppearance:animated];
         
     }
     
@@ -404,12 +404,12 @@ _previousButton = nil;
 #pragma mark - Nav Bar Appearance
 
 - (void)setNavBarAppearance:(BOOL)animated {
-    self.navigationController.navigationBar.tintColor = nil;
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
-        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
-    }
+//    self.navigationController.navigationBar.tintColor = nil;
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+//    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
+//        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+//        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
+//    }
 }
 
 - (void)storePreviousNavBarAppearance {
@@ -431,11 +431,11 @@ _previousButton = nil;
             [self.navigationController.navigationBar setBackgroundImage:_navigationBarBackgroundImageLandscapePhone forBarMetrics:UIBarMetricsLandscapePhone];
         }
         // Restore back button if we need to
-        if (_previousViewControllerBackButton) {
-            UIViewController *previousViewController = [self.navigationController topViewController]; // We've disappeared so previous is now top
-            previousViewController.navigationItem.backBarButtonItem = _previousViewControllerBackButton;
-            self.previousViewControllerBackButton = nil;
-        }
+//        if (_previousViewControllerBackButton) {
+//            UIViewController *previousViewController = [self.navigationController topViewController]; // We've disappeared so previous is now top
+//            previousViewController.navigationItem.backBarButtonItem = _previousViewControllerBackButton;
+//            self.previousViewControllerBackButton = nil;
+//        }
     }
 }
 
