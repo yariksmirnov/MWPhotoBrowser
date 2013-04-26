@@ -53,6 +53,11 @@
 
 -(void)updateNavigation;
 
+- (void)storePreviousNavBarAppearance;
+- (void)restorePreviousNavBarAppearance:(BOOL)animated;
+
+- (void)setNavBarAppearance:(BOOL)animated;
+
 @end
 
 
