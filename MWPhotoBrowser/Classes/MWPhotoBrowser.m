@@ -357,10 +357,10 @@ _previousButton = nil;
     }
     
     // Navigation bar appearance
-//    if (!_viewIsActive && [self.navigationController.viewControllers objectAtIndex:0] != self) {
-//        [self storePreviousNavBarAppearance];
-//    }
-    //[self setNavBarAppearance:animated];
+    if (!_viewIsActive && [self.navigationController.viewControllers objectAtIndex:0] != self) {
+        [self storePreviousNavBarAppearance];
+    }
+    [self setNavBarAppearance:animated];
     
     // Update UI
 	[self hideControlsAfterDelay];
@@ -377,7 +377,7 @@ _previousButton = nil;
         _viewIsActive = NO;
         
         // Bar state / appearance
-        //[self restorePreviousNavBarAppearance:animated];
+        [self restorePreviousNavBarAppearance:animated];
         
     }
     
@@ -404,12 +404,12 @@ _previousButton = nil;
 #pragma mark - Nav Bar Appearance
 
 - (void)setNavBarAppearance:(BOOL)animated {
-//    self.navigationController.navigationBar.tintColor = nil;
-//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-//    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
-//        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-//        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
-//    }
+    self.navigationController.navigationBar.tintColor = nil;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    if ([[UINavigationBar class] respondsToSelector:@selector(appearance)]) {
+        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+        [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsLandscapePhone];
+    }
 }
 
 - (void)storePreviousNavBarAppearance {

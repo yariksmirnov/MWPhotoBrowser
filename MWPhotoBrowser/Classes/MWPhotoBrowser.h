@@ -37,6 +37,7 @@
 // Properties
 @property (nonatomic) BOOL displayActionButton;
 @property (nonatomic, weak) IBOutlet id<MWPhotoBrowserDelegate> delegate;
+@property (nonatomic, strong) UIScrollView *pagingScrollView;
 @property (nonatomic, assign) unsigned int currentPageIndex;
 
 // Init
@@ -48,6 +49,7 @@
 
 // Set page that photo browser starts on
 - (void)setInitialPageIndex:(NSUInteger)index;
+- (void)setControlsHidden:(BOOL)hidden animated:(BOOL)animated permanent:(BOOL)permanent;
 
 -(void)updateNavigation;
 
